@@ -21,5 +21,6 @@ var createCounter = function(init) {
         decrement,
         reset
     };
+    ==>
 };
 
