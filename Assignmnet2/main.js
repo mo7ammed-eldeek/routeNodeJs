@@ -239,11 +239,42 @@ sysInfo();
 // 20. Create a pipeline that reads a file, compresses it, and writes it to another file. (0.5 Grade) 
 // • Input Example: "./data.txt", "./data.txt.gz" 
 
-// note : i searched for it  https://www.tpointtech.com/nodejs-stream-readable-pipe-method
-
+// !note : i searched for it  https://www.tpointtech.com/nodejs-stream-readable-pipe-method -- مش فاهمها
+ 
 (()=>{
   const fs = require('fs');
-  const inputStream = fs.createReadStream('');
-  const outPutStream = fs.createWriteStream();
+  // compress lib
+  const zlib = require('zlib');
 
-});
+
+  const inputStream = fs.createReadStream('./data.txt');
+  const outPutStream = fs.createWriteStream("./datacopy.txt.gz");
+  // console.log(outPutStream);
+  const compress = zlib.createGzip()
+  // console.log(compress);
+  
+
+  const compressedFile = inputStream.pipe(compress);
+  // console.log(compressedFile );
+  
+  compressedFile.pipe(outPutStream);
+  // Basic data listener
+  // process.stdin.on('data', (data) => {
+  // console.log(`You entered: ${data.toString()}`);
+  // process.exit(); // Exit after one input to stop the process
+  // });
+
+  // // Using readline for line-by-line input
+  // const readline = require('readline');
+  // const rl = readline.createInterface({ input: process.stdin });
+
+  // rl.question('What is your name? ', (answer) => {
+  // console.log(`Hello, ${answer}`);
+  // rl.close();
+  // });   
+
+})();
+
+
+
+
